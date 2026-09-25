@@ -1,2 +1,2 @@
 # my-portfolio
-a site about my experiences, adventures, and achievements
+a site about my experiences, adventures (coming soon ^-^), and achievements

@@ -1,0 +1,442 @@
+/* Theme :D */
+:root {
+  --bg: #161616;          /* page background - deep blue */
+  --bg-panel: #526160;    /* cards / nav background - slightly lighter blue */
+  --line: #1f2a3d;        /* borders and dividers */
+  --text: #ffffff;        /* main text color */
+  --text-dim: #dddddd;    /* secondary/muted text */
+  --accent: #FFFEE0;      /* accent color - used for highlights */
+}
+
+/* Reset & base page setup */
+* {
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Times New Roman', Times, serif;
+  line-height: 1.6;
+  display: flex;
+  min-height: 100%;
+}
+
+/* Grid background */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.3;
+}
+
+/* Overall layout: sidebar nav + main content*/
+.layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  flex-direction: column;
+}
+@media (min-width: 800px) {
+  .layout {
+    flex-direction: row; /* side-by-side on wider screens */
+  }
+}
+
+nav {
+  flex-shrink: 0;
+  padding: 32px 28px;
+  border-bottom: 1px solid var(--line);
+}
+@media (min-width: 800px) {
+  nav {
+    width: 260px;
+    border-bottom: none;
+    border-right: 1px solid var(--line);
+    padding: 48px 32px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.role {
+  font-size: 0.9rem;
+  color: var(--accent);
+  margin: 0 0 32px;
+  line-height: 1.5;
+}
+
+/* Nav tabs */
+.tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+@media (min-width: 800px) {
+  .tabs {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+.tab {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 12px 16px;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.tab:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+.tab.active {
+  color: var(--text);
+  border-color: var(--accent);
+  background: var(--bg-panel);
+}
+.tab .n {
+  color: var(--accent);
+  margin-right: 8px;
+}
+
+/* Contact section */
+.contact-section {
+  margin-top: 28px;
+}
+.contact-label {
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  margin: 0 0 10px;
+}
+.social-links {
+  display: flex;
+  gap: 10px;
+}
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.social-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.social-icon-github img {
+  background: #fff;
+  object-fit: contain;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.social-icon:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Main content area */
+main {
+  flex: 1;
+  padding: 40px 24px 80px;
+  min-width: 0;
+}
+@media (min-width: 800px) {
+  main {
+    padding: 64px 64px 100px;
+  }
+}
+
+/* Only one .panel is shown at a time */
+.panel {
+  display: none;
+  max-width: 720px;
+}
+.panel.active {
+  display: block;
+}
+.panel h2 {
+  font-size: 1.8rem;
+  margin: 0 0 8px;
+}
+.panel .sub {
+  color: var(--text-dim);
+  margin: 0 0 36px;
+  max-width: 60ch;
+}
+
+/* Project / event cards */
+.card {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 24px;
+  margin-bottom: 20px;
+  background: var(--bg-panel);
+}
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+.card .meta {
+  font-size: 0.75rem;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.card p {
+  color: var(--text-dim);
+  margin: 12px 0;
+}
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.tools span {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  border: 1px solid var(--line);
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+/* images used in cards */
+.placeholder-img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 3px;
+}
+
+.gallery-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.gallery-img {
+  flex: 1;
+  min-width: 160px; /* stops them getting too squished */
+  height: 200px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+/* What?/How?/Results? section headers and bullet lists inside cards */
+.section-label {
+  font-weight: 700;
+  margin: 20px 0 6px;
+  color: var(--text);
+}
+.section-label:first-of-type {
+  margin-top: 0;
+}
+.detail-list {
+  margin: 0 0 4px;
+  padding-left: 20px; /* hanging indent for wrapped lines */
+  color: var(--text-dim);
+}
+.detail-list li {
+  margin-bottom: 6px;
+}
+
+.group-label {
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin: 32px 0 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+.group-label:first-of-type {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.edit-note {
+  font-size: 0.72rem;
+  color: var(--accent);
+  border-top: 1px solid var(--line);
+  margin-top: 48px;
+  padding-top: 16px;
+}
+
+/* Home page slider */
+.slider {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg-panel);
+  margin-bottom: 36px;
+}
+.slides {
+  position: relative;
+  height: 380px;
+}
+
+/* Each .slide sits on top of the others; only the .active one is visible */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.slide.active {
+  opacity: 1;
+}
+
+.slide .frame {
+  position: absolute;
+  inset: 0;
+}
+.slide .frame img,
+.slide .frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Caption sits as a small overlay strip at the TOP of the slide */
+.slide .cap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 16px 20px;
+  background: linear-gradient(rgba(0,0,0,0.6), transparent);
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  text-align: left;
+}
+.slide .cap b {
+  color: #fff;
+}
+
+/* Controls (prev / dots / next) float over the bottom of the image */
+.slider-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.65));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.slider:hover .slider-controls,
+.slider:focus-within .slider-controls {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* Touch devices have no "hover" so always show the controls there */
+@media (hover: none) {
+  .slider-controls {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.slider-controls button {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: inherit;
+}
+.slider-controls button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.dots {
+  display: flex;
+  gap: 8px;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+.dot.active {
+  background: var(--accent);
+}
+
+.about-row {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  flex-wrap: wrap; /* photo stacks above text on narrow screens */
+}
+.about-photo {
+  width: 210px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  flex-shrink: 0; /* keeps photo from getting squished */
+}
+
+.intro-blurb {
+  max-width: 60ch;
+  color: var(--text-dim);
+}
+.intro-blurb strong {
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+}
+a:hover {
+  opacity: 0.8;
+}
